@@ -41,12 +41,18 @@ public class GetMethodQuiz08 extends HttpServlet{
 		while (iter.hasNext()) {
 			String line = iter.next();
 			if (line.contains(keyword)) {
-				out.print(line + "<br>");
+				// 1) 
+//				line = line.replace(keyword, "<b>" + keyword + "</b>");
+//				out.print(line + "<br>");
+				
+				// 2)
+				String[] words = line.split(keyword);
+				out.print(words[0] + "<b>" + keyword + "</b>" + words[1] + "<br>");
 			}
 		}
 		out.print("</body></html>");
 		
-		// 탐색 출력2(분기)
+		// 탐색 출력2
 //		PrintWriter out = response.getWriter();
 //		out.print("<html><head><title>주문 결과</title></head><body>");
 //		for (int i = 0; i < list.size(); i++) {
