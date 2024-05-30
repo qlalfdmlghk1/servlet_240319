@@ -40,6 +40,7 @@
 					out.print(meter + "m");
 				}
 			}
+		}
 	%>
 </body>
 </html>
