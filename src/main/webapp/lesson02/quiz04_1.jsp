@@ -16,31 +16,34 @@
 		// 인치: 길이 값을 2.54(으)로 나눕니다.
 		// 야드: 길이 값을 91.44(으)로 나눕니다.
 		// 피트: 길이 값을 30.48(으)로 나눕니다.
-		// 미터: 길이 값을 100(으)로 나눕니다.
-		double inch = (double) length / 2.54;
-		double yard = (double) length / 91.44;
-		double feet = (double) length / 30.48;
-		double meter = (double) length / 100;
-		
+		// 미터: 길이 값을 100(으)로 나눕니다.		
 	%>
-	
-	<h1>길이 변환 결과</h1>
-	<h3><%= length %>cm</h3>
-	<hr>
-	<%
-		if (transformArr != null) {
-			for (String trans : transformArr) {
-				if (trans.equals("inch")) {
-					out.print(inch + "in");
-				} else if (trans.equals("yard")) {
-					out.print(yard + "yd");
-				} else if (trans.equals("feet")) {
-					out.print(feet + "ft");
-				} else if (trans.equals("meter")) {
-					out.print(meter + "m");
+	<div class="container">
+		<h1>길이 변환 결과</h1>
+		<h3><%= length %>cm</h3>
+		<hr>
+		<h2>
+			<%  // HTML 태그 안에 넣어도 됨. 
+				if (transformArr != null) {
+					for (String trans : transformArr) {
+						if (trans.equals("inch")) {
+							double inch = (double) length / 2.54;
+							out.print(inch + "in<br>");	
+						} else if (trans.equals("yard")) {
+							double yard = (double) length / 91.44;
+							out.print(yard + "yd<br>");
+						} else if (trans.equals("feet")) {
+							double feet = (double) length / 30.48;
+							out.print(feet + "ft<br>");
+						} else if (trans.equals("meter")) {
+							double meter = (double) length / 100;
+							out.print(meter + "m<br>");
+						}
+					}
 				}
-			}
-		}
-	%>
+			%>		
+		</h2>
+	</div>
+	
 </body>
 </html>
