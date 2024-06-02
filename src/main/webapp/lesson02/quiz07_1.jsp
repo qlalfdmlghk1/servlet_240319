@@ -45,30 +45,29 @@
 		  		String[] filterArr = request.getParameterValues("filter");
 				for (int i = 0; i < list.size(); i++) {	
 					if (list.get(i).get("menu").equals(search)) {
-						if (filterArr != null){
-							out.print(list.get(i).get("point"));
-							if (Integer.valueOf(list.get(i).get("point").toString()) > 4.0) {
+						if (filterArr == null) {			
 			%>
-						    	<tr>
-							      <th><%= list.get(i).get("name") %></th>
-							      <td><%= list.get(i).get("menu") %></td>
-							      <td><%= list.get(i).get("point") %></td>
-							    </tr>
-			<% 
-						}
-						else {
-							out.print(list.get(i).get("point"));
-			%>
-							<tr>
-						      <th><%= list.get(i).get("name") %></th>
+					    	<tr>
 						      <td><%= list.get(i).get("menu") %></td>
+						      <td><%= list.get(i).get("name") %></td>
 						      <td><%= list.get(i).get("point") %></td>
 						    </tr>
-						 <%
+			<%
+						}
+						else {
+							if (Double.valueOf(list.get(i).get("point").toString()) > 4) {
+			%>
+							<tr>	
+						      <td><%= list.get(i).get("menu") %></td>
+						      <td><%= list.get(i).get("name") %></td>
+						      <td><%= list.get(i).get("point") %></td>
+						    </tr>
+			<%				
+							}
 						}
 					}
 				}
-			} %>
+			%>
 							
   		 </tbody>
 		</table>
