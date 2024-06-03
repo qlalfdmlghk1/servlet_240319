@@ -16,7 +16,7 @@
 			<div>
 				<div class="d-flex align-items-center pt-2">
 					<input type="text" id="search" name="search" class="form-control col-4 mr-2" placeholder="메뉴를 입력하세요.">
-					<label>4점 이하 제외 <input type="checkbox" name="filter" value="underFourPoint"></label>
+					<label>4점 이하 제외 <input type="checkbox" name="filter" value="true"></label>
 				</div>
 				<input type="submit" value="검색" class="btn btn-success mt-3">
 			</div>

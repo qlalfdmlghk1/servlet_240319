@@ -42,29 +42,27 @@
 		  <tbody>
 		  	<%	
 		  		String search = request.getParameter("search");
-		  		String[] filterArr = request.getParameterValues("filter");
+		  		//String[] filterArr = request.getParameterValues("filter");
+		  		
+		  		// 4점 이하 제외 체크됨: "true", 체크 안됨: null
+		  		String filter = request.getParameter("filter");
+		  		boolean exclude = filter != null; // 체크됨 => true 4점 이하 제외
 				for (int i = 0; i < list.size(); i++) {	
 					if (list.get(i).get("menu").equals(search)) {
-						if (filterArr == null) {			
-			%>
-					    	<tr>
-						      <td><%= list.get(i).get("menu") %></td>
-						      <td><%= list.get(i).get("name") %></td>
-						      <td><%= list.get(i).get("point") %></td>
-						    </tr>
-			<%
+						//if (filterArr == null) {
+						// skip 조건이 체크되어 있고 skip 되어야 할 때 continue
+						if (exclude && (double)list.get(i).get("point") <= 4.0) {
+							continue; // 안 뿌리고 skip
 						}
-						else {
-							if (Double.valueOf(list.get(i).get("point").toString()) > 4) {
+							
 			%>
-							<tr>	
-						      <td><%= list.get(i).get("menu") %></td>
-						      <td><%= list.get(i).get("name") %></td>
-						      <td><%= list.get(i).get("point") %></td>
-						    </tr>
+				    	<tr>
+					      <td><%= list.get(i).get("menu") %></td>
+					      <td><%= list.get(i).get("name") %></td>
+					      <td><%= list.get(i).get("point") %></td>
+					    </tr>
+
 			<%				
-							}
-						}
 					}
 				}
 			%>
