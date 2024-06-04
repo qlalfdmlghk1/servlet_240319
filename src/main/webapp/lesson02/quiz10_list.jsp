@@ -6,6 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>노래 리스트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+<style>
+	header{height:80px;}
+	nav{height:40px;}
+	.contents{min-height:500px;}
+	footer {height:200px;}
+</style>
 </head>
 <body>
 <%
@@ -86,9 +95,74 @@
     musicInfo.put("lyricist", "아이유");
     musicList.add(musicInfo);
 %>
-<header></header>
-<nav></nav>
-<section></section>
-<footer></footer>
+<div id="wrap" class="container">
+	<header class="d-flex align-items-center">
+		<!-- 로고 -->
+		<div class="col-2">
+			<h3 class="text-success">Melong</h3>
+		</div>
+		<!-- 검색 -->
+		<div class="col-10">
+			<form method="get" action="/lesson02/quiz10_music.jsp">
+				<div class="d-flex form-group">
+				  <input type="text" name="search" id="search" class="form-control col-6">
+				  <div class="input-group-append">
+				    <button class="btn btn-info" type="submit">검색</button>
+				  </div>
+				</div>
+			</form>
+		</div>
+	</header>
+	<nav class="d-flex align-items-center">
+	    <ul class="nav nav-fill">  <!-- w-100: nav를 d-flex align-items-center 했을 때 필요 -->
+	        <li class="nav-item"><a href="" class="nav-link text-dark font-weight-bold">멜롱차트</a></li>
+	        <li class="nav-item"><a href="" class="nav-link text-dark font-weight-bold">최신음악</a></li>
+	        <li class="nav-item"><a href="" class="nav-link text-dark font-weight-bold">장르음악</a></li>
+	        <li class="nav-item"><a href="" class="nav-link text-dark font-weight-bold">멜롱DJ</a></li>
+	        <li class="nav-item"><a href="" class="nav-link text-dark font-weight-bold">뮤직어워드</a></li>
+	    </ul>
+	</nav>
+	<section class="contents">
+		<!-- 아티스트 정보 영역 -->
+		<div class="d-flex border border-success p-3">
+			<div class="mr-4">
+				<img alt="가수 이미지" src="<%= artistInfo.get("photo") %>" width="150">
+			</div>
+			<div>
+				<h3 class="font-weight-bold"><%= artistInfo.get("name") %></h3>
+				<div><%= artistInfo.get("debute") %></div>
+				<div><%= artistInfo.get("agency") %></div>
+			</div>
+		</div>
+		
+		<!-- 곡 목록 -->
+		<table class="table text-center">
+		  <thead>
+		    <tr>
+		      <th>no</th>
+		      <th>제목</th>
+		      <th>앨범</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<%
+				// request param
+				for (Map<String, Object> item : musicList) {  // 향상된 for 문
+			%>
+				
+					<tr>
+				      <td><%= item.get("id") %></td>
+				      <td><a href="/lesson02/quiz10_music.jsp?id=<%= item.get("id") %>"><%= item.get("title") %></a></td>
+				      <td><%= item.get("album") %></td>
+				    </tr>
+			<%	
+				}
+			%>
+		  </tbody>
+		</table>
+	</section>
+	<footer class="d-flex justify-content-center align-items-center">
+		<small>Copyright 2021.melong All Right Reserved.</small>
+	</footer>
 </body>
 </html>
