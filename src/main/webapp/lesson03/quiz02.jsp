@@ -18,7 +18,7 @@
 	ms.connect();
 	
 	// select 쿼리 수행
-	String query = "select `name`,`url` from `bookmark` order by `id` desc";
+	String query = "select `id`,`name`,`url` from `bookmark` order by `id` desc";
 	ResultSet res = ms.select(query);
 %>
 	<table class="table text-center">
