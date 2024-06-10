@@ -36,7 +36,7 @@ public class DeleteQuiz02 extends HttpServlet{
 		ms.disconnect();
 		
 		// 목록 화면 이동 302 redirect
-		response.sendRedirect("lesson03/quiz02.jsp");
+		response.sendRedirect("/lesson03/quiz02.jsp");
 	}
 	
 }
